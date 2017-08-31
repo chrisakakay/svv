@@ -1,0 +1,11 @@
+{
+  "name": "svv",
+  "version": "0.0.1",
+  "description": "Simple Value Validator",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "MIT"
+}
