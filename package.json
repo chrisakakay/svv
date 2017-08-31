@@ -3,9 +3,23 @@
   "version": "0.0.1",
   "description": "Simple Value Validator",
   "main": "index.js",
-  "scripts": {
-    "test": "jest"
+  "homepage": "https://github.com/chrisakakay/svv",
+  "repository": "chrisakakay/svv",
+  "author": "Krisztian Nagy <chrisakakay@gmail.com> (http://chrisakakay.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chrisakakay/svv/issues",
+    "email": "chrisakakay@gmail.com"
   },
-  "author": "",
-  "license": "MIT"
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint index.js --fix"
+  },
+  "files": [
+    "index.js"
+  ],
+  "devDependencies": {
+    "eslint": "^4.4.1",
+    "jest": "^20.0.4"
+  }
 }
