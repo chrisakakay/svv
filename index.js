@@ -1,5 +1,13 @@
-class Item {
-  constructor(name, value) {
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }());
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+var Item = (function () {
+  function Item(name, value) {
+    _classCallCheck(this, Item);
+
     this.name = name;
     this.value = value;
 
@@ -7,82 +15,103 @@ class Item {
     this.errors = [];
   }
 
-  required() {
-    if (!(this.value && this.value !== null && this.value !== '')) {
-      this.errors.push(`The ${this.name} field is required`);
-      this.valid = false;
+  _createClass(Item, [{
+    key: 'required',
+    value: function required() {
+      if (!(this.value && this.value !== null && this.value !== '')) {
+        this.errors.push('The ' + this.name + ' field is required');
+        this.valid = false;
+      }
+
+      return this;
     }
+  }, {
+    key: 'requiredIf',
+    value: function requiredIf(condition) {
+      if (condition) {
+        this.required();
+      }
 
-    return this;
-  }
-
-  requiredIf(condition) {
-    if (condition) {
-      this.required();
+      return this;
     }
+  }, {
+    key: 'comeAfter',
+    value: function comeAfter(name, value) {
+      if (!(this.value && this.value > value)) {
+        this.errors.push('The ' + this.name + ' should come after ' + name);
+        this.valid = false;
+      }
 
-    return this;
-  }
-
-  comeAfter(name, value) {
-    if (!(this.value && this.value > value)) {
-      this.errors.push(`The ${this.name} should come after ${name}`);
-      this.valid = false;
+      return this;
     }
+  }, {
+    key: 'notEqual',
+    value: function notEqual(name, value) {
+      if (!(this.value && this.value !== value)) {
+        this.errors.push('The ' + this.name + ' should not be the same as the ' + name);
+        this.valid = false;
+      }
 
-    return this;
-  }
-
-  notEqual(name, value) {
-    if (!(this.value && this.value !== value)) {
-      this.errors.push(`The ${this.name} should not be the same as the ${name}`);
-      this.valid = false;
+      return this;
     }
+  }]);
 
-    return this;
-  }
-}
+  return Item;
+}());
 
-class Runner {
-  constructor() {
+var Runner = (function () {
+  function Runner() {
+    _classCallCheck(this, Runner);
+
     this.stressed = false;
     this.valid = true;
     this.errors = {
-      has: () => {},
-      first: () => {}
+      has: function has() {},
+      first: function first() {}
     };
   }
 
-  all(items, opts) {
-    if (opts && opts.stressed) this.stressed = true;
+  _createClass(Runner, [{
+    key: 'all',
+    value: function all(items, opts) {
+      var _this = this;
 
-    return new Promise((resolve) => {
-      const result = {
-        errors: {},
-        valid: true
-      };
+      if (opts && opts.stressed) this.stressed = true;
 
-      items.forEach((item) => {
-        if (!item.valid) {
-          result.errors[item.name] = item.errors;
-          result.valid = false;
+      return new Promise(function (resolve) {
+        var result = {
+          errors: {},
+          valid: true
+        };
+
+        items.forEach(function (item) {
+          if (!item.valid) {
+            result.errors[item.name] = item.errors;
+            result.valid = false;
+          }
+        });
+
+        result.errors.has = function (errorName) {
+          return result.errors[errorName];
+        };
+        result.errors.first = function (errorName) {
+          return result.errors[errorName] ? result.errors[errorName][0] : '';
+        };
+
+        if (_this.stressed) {
+          _this.errors = result.errors;
+          _this.valid = result.valid;
         }
+
+        resolve(result);
       });
+    }
+  }]);
 
-      result.errors.has = errorName => result.errors[errorName];
-      result.errors.first = errorName => (result.errors[errorName] ? result.errors[errorName][0] : '');
-
-      if (this.stressed) {
-        this.errors = result.errors;
-        this.valid = result.valid;
-      }
-
-      resolve(result);
-    });
-  }
-}
+  return Runner;
+}());
 
 module.exports = {
-  Runner,
-  Item
+  Runner: Runner,
+  Item: Item
 };
