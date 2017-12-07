@@ -2,10 +2,32 @@
 
 A small module the validate values easily (opinionated).
 
-Exaple:
+Install:
+
+```bash
+yarn add svv
+// or
+npm install svv
+```
+
+Usage example:
 
 ```javascript
+import { Runner, Item } from 'svv';
 
+const validator = new Runner();
+
+validator.all([
+    new Item(‘content’, property1).required(),
+    new Item(‘category’, property2).requiredIf(property1 === 'something')
+], { /* options */ })
+.then((result) => {
+    if (result.valid) {
+       // valid
+    } else {
+       // invalid
+    }
+});
 ```
 
 [API DOCS v0.1.0](https://chrisakakay.github.io/svv/svv/0.1.0)
