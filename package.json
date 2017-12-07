@@ -13,13 +13,16 @@
   },
   "scripts": {
     "test": "jest",
-    "lint": "eslint index.js --fix"
+    "lint": "eslint index.js --fix",
+    "doc": "./node_modules/.bin/jsdoc --configure .jsdoc.json --verbose"
   },
   "files": [
     "index.js"
   ],
   "devDependencies": {
     "eslint": "^4.4.1",
-    "jest": "^20.0.4"
+    "jest": "^20.0.4",
+    "jsdoc": "^3.5.5",
+    "minami": "^1.2.3"
   }
 }

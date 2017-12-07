@@ -1,3 +1,22 @@
+/**
+ @typedef Result
+ @type {Object}
+ @property {Object} errors
+ @property {boolean} valid
+ */
+
+/**
+ @typedef Options
+ @type {Object}
+ @property {boolean} stressed
+ */
+
+/**
+ * Item class.
+ * @constructor
+ * @param {string} name - The name.
+ * @param {string} value - The value.
+ */
 class Item {
   constructor(name, value) {
     this.name = name;
@@ -7,6 +26,10 @@ class Item {
     this.errors = [];
   }
 
+  /**
+   * Should be filled out.
+   * @return {Item} The validation Item itself
+   */
   required() {
     if (!(this.value && this.value !== null && this.value !== '')) {
       this.errors.push(`The ${this.name} field is required`);
@@ -16,6 +39,11 @@ class Item {
     return this;
   }
 
+  /**
+   * Should be required if the condition is true.
+   * @param {boolean} condition - The condition.
+   * @returns {Item} The validation Item itself
+   */
   requiredIf(condition) {
     if (condition) {
       this.required();
@@ -24,6 +52,12 @@ class Item {
     return this;
   }
 
+  /**
+   * Should be bigger than the given value .
+   * @param {string} name - The name.
+   * @param {string} value - The value.
+   * @return {Item} The validation Item itself
+   */
   comeAfter(name, value) {
     if (!(this.value && this.value > value)) {
       this.errors.push(`The ${this.name} should come after ${name}`);
@@ -33,6 +67,12 @@ class Item {
     return this;
   }
 
+  /**
+   * Should be valid if not equal with other value.
+   * @param {string} name - The name.
+   * @param {string} value - The value.
+   * @return {Item} The validation Item itself
+   */
   notEqual(name, value) {
     if (!(this.value && this.value !== value)) {
       this.errors.push(`The ${this.name} should not be the same as the ${name}`);
@@ -43,6 +83,10 @@ class Item {
   }
 }
 
+/**
+ * Runner class.
+ * @constructor
+ */
 class Runner {
   constructor() {
     this.stressed = false;
@@ -53,6 +97,12 @@ class Runner {
     };
   }
 
+  /**
+   * Running the given validations.
+   * @param {(Item|Array)} items - An array of {Item} rules.
+   * @param {Options} opts - Options object.
+   * @returns {Result} result
+   */
   all(items, opts) {
     if (opts && opts.stressed) this.stressed = true;
 
