@@ -38,4 +38,4 @@ validator.all([
 
 [Homepage](https://chrisakakay.github.io/svv)
 
-[API DOCS v0.2.1](https://chrisakakay.github.io/svv/svv/0.2.1)
+[API DOCS v0.2.2](https://chrisakakay.github.io/svv/svv/0.2.2)

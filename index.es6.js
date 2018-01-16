@@ -21,6 +21,7 @@ class Item {
   constructor(name, value) {
     this.name = name;
     this.value = value;
+    this.shouldBeValidated = true;
 
     this.valid = true;
     this.errors = [];
@@ -31,6 +32,8 @@ class Item {
    * @return {Item} The validation Item itself
    */
   required() {
+    this.shouldBeValidated = true;
+
     if (!(this.value && this.value !== null && this.value !== '')) {
       this.errors.push(`The ${this.name} field is required`);
       this.valid = false;
@@ -40,7 +43,7 @@ class Item {
   }
 
   /**
-   * Should be required if the condition is true.
+   * Should be filled out if the condition is true.
    * @param {boolean} condition - The condition.
    * @returns {Item} The validation Item itself
    */
@@ -48,6 +51,8 @@ class Item {
     if (condition) {
       this.required();
     }
+
+    this.shouldBeValidated = false;
 
     return this;
   }
@@ -59,7 +64,7 @@ class Item {
    * @return {Item} The validation Item itself
    */
   comeAfter(name, value) {
-    if (!(this.value && this.value > value)) {
+    if (this.shouldBeValidated && !(this.value && this.value > value)) {
       this.errors.push(`The ${this.name} should come after ${name}`);
       this.valid = false;
     }
@@ -74,7 +79,7 @@ class Item {
    * @return {Item} The validation Item itself
    */
   notEqual(name, value) {
-    if (!(this.value && this.value !== value)) {
+    if (this.shouldBeValidated && !(this.value && this.value !== value)) {
       this.errors.push(`The ${this.name} should not be the same as the ${name}`);
       this.valid = false;
     }
@@ -88,7 +93,7 @@ class Item {
    * @return {Item} The validation Item itself
    */
   minLength(value) {
-    if (!(this.value && this.value.length >= value)) {
+    if (this.shouldBeValidated && !(this.value && this.value.length >= value)) {
       this.errors.push(`The ${this.name} should be longer than ${value} characters`);
       this.valid = false;
     }

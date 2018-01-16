@@ -9,8 +9,14 @@ describe('Simple Value Validator', () => {
   });
 
   describe('Item', () => {
-    xit('constructor', () => {
+    it('constructor', () => {
+      const item = new Validator.Item('a', 'b');
 
+      expect(item.name).toBe('a');
+      expect(item.value).toBe('b');
+      expect(item.shouldBeValidated).toBe(true);
+      expect(item.valid).toBe(true);
+      expect(item.errors.length).toBe(0);
     });
 
     it('required', () => {
@@ -59,5 +65,20 @@ describe('Simple Value Validator', () => {
     xit('all', () => {
 
     });
+  });
+
+  describe('chained', () => {
+    it('required', () => {
+      expect(new Validator.Item('a', '').required().minLength(5).valid).toBe(false);
+      expect(new Validator.Item('a', 'aaaaa').required().minLength(5).valid).toBe(true);
+    });
+
+    it('requiredIf', () => {
+      expect(new Validator.Item('a', '').requiredIf(false).minLength(5).valid).toBe(true);
+      expect(new Validator.Item('a', '').requiredIf(true).minLength(5).valid).toBe(false);
+      expect(new Validator.Item('a', 'aaaaa').requiredIf(true).minLength(5).valid).toBe(true);
+    });
+
+
   });
 })

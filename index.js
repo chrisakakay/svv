@@ -10,6 +10,7 @@ var Item = function () {
 
     this.name = name;
     this.value = value;
+    this.shouldBeValidated = true;
 
     this.valid = true;
     this.errors = [];
@@ -18,6 +19,8 @@ var Item = function () {
   _createClass(Item, [{
     key: 'required',
     value: function required() {
+      this.shouldBeValidated = true;
+
       if (!(this.value && this.value !== null && this.value !== '')) {
         this.errors.push('The ' + this.name + ' field is required');
         this.valid = false;
@@ -32,12 +35,14 @@ var Item = function () {
         this.required();
       }
 
+      this.shouldBeValidated = false;
+
       return this;
     }
   }, {
     key: 'comeAfter',
     value: function comeAfter(name, value) {
-      if (!(this.value && this.value > value)) {
+      if (this.shouldBeValidated && !(this.value && this.value > value)) {
         this.errors.push('The ' + this.name + ' should come after ' + name);
         this.valid = false;
       }
@@ -47,7 +52,7 @@ var Item = function () {
   }, {
     key: 'notEqual',
     value: function notEqual(name, value) {
-      if (!(this.value && this.value !== value)) {
+      if (this.shouldBeValidated && !(this.value && this.value !== value)) {
         this.errors.push('The ' + this.name + ' should not be the same as the ' + name);
         this.valid = false;
       }
@@ -57,7 +62,7 @@ var Item = function () {
   }, {
     key: 'minLength',
     value: function minLength(value) {
-      if (!(this.value && this.value.length >= value)) {
+      if (this.shouldBeValidated && !(this.value && this.value.length >= value)) {
         this.errors.push('The ' + this.name + ' should be longer than ' + value + ' characters');
         this.valid = false;
       }
