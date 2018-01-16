@@ -81,6 +81,20 @@ class Item {
 
     return this;
   }
+
+  /**
+   * Should be valid if the length is bigger than the value.
+   * @param {string} value - The value.
+   * @return {Item} The validation Item itself
+   */
+  minLength(value) {
+    if (!(this.value && this.value.length >= value)) {
+      this.errors.push(`The ${this.name} should be longer than ${value} characters`);
+      this.valid = false;
+    }
+
+    return this;
+  }
 }
 
 /**

@@ -54,6 +54,16 @@ var Item = function () {
 
       return this;
     }
+  }, {
+    key: 'minLength',
+    value: function minLength(value) {
+      if (!(this.value && this.value.length >= value)) {
+        this.errors.push('The ' + this.name + ' should be longer than ' + value + ' characters');
+        this.valid = false;
+      }
+
+      return this;
+    }
   }]);
 
   return Item;
