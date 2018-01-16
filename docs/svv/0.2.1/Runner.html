@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Global - Documentation</title>
+    <title>Runner - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Global</h1>
+    <h1 class="page-title">Runner</h1>
     
 
     
@@ -42,8 +42,10 @@
 <header>
     
         <h2>
-        
+        Runner
         </h2>
+        
+            <div class="class-description"><p>Runner class.</p></div>
         
     
 </header>
@@ -52,8 +54,20 @@
     <div class="container-overview">
     
         
+<div class="section-method">
 
-        
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="Runner"><span class="type-signature"></span>new Runner<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+
 
 
 <dl class="details">
@@ -83,6 +97,11 @@
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.es6.js.html">index.es6.js</a>, <a href="index.es6.js.html#line104">line 104</a>
+    </li></ul></dd>
+    
 
     
 
@@ -92,7 +111,28 @@
 </dl>
 
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
     
     </div>
 
@@ -109,72 +149,24 @@
     
 
     
-
-    
-        <h3 class="subsection-title">Type Definitions</h3>
+        <h3 class="subsection-title">Methods</h3>
 
         
-                
-<div class="section-members">
-<h4 class="name" id="Options">Options</h4>
-
-
-
-
-
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
+            
+<div class="section-method">
 
     
 
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>stressed</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>boolean</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-        
+    <h4 class="name" id="all"><span class="type-signature"></span>all<span class="signature">(items, opts)</span><span class="type-signature"> &rarr; {<a href="global.html#Result">Result</a>}</span></h4>
 
     
-    </tbody>
-</table>
+
+
+
+<div class="description">
+    <p>Running the given validations.</p>
+</div>
+
 
 
 
@@ -208,7 +200,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.es6.js.html">index.es6.js</a>, <a href="index.es6.js.html#line8">line 8</a>
+        <a href="index.es6.js.html">index.es6.js</a>, <a href="index.es6.js.html#line120">line 120</a>
     </li></ul></dd>
     
 
@@ -221,39 +213,16 @@
 
 
 
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>Object</code></span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-</div>
-
-            
-                
-<div class="section-members">
-<h4 class="name" id="Result">Result</h4>
 
 
 
 
 
 
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
+    <h5>Parameters:</h5>
     
 
-<table class="props">
+<table class="params">
     <thead>
     <tr>
         
@@ -275,13 +244,16 @@
 
         <tr>
             
-                <td class="name"><code>errors</code></td>
+                <td class="name"><code>items</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code>Object</code></span>
+<span class="param-type"><code><a href="Item.html">Item</a></code></span>
+|
+
+<span class="param-type"><code>Array</code></span>
 
 
             
@@ -291,22 +263,23 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">
+                <p>An array of {Item} rules.</p>
+                
+            </td>
         </tr>
-
-        
 
     
 
         <tr>
             
-                <td class="name"><code>valid</code></td>
+                <td class="name"><code>opts</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code>boolean</code></span>
+<span class="param-type"><code><a href="global.html#Options">Options</a></code></span>
 
 
             
@@ -316,10 +289,11 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">
+                <p>Options object.</p>
+                
+            </td>
         </tr>
-
-        
 
     
     </tbody>
@@ -328,65 +302,47 @@
 
 
 
-<dl class="details">
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
+<div class="section-returns">
+<h5>Returns:</h5>
 
-    
+        
 
-    
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code><a href="global.html#Result">Result</a></code></span>
 
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.es6.js.html">index.es6.js</a>, <a href="index.es6.js.html#line1">line 1</a>
-    </li></ul></dd>
-    
 
-    
-
-    
-
-    
+    </dd>
 </dl>
 
 
+<div class="param-desc">
+    <p>result</p>
+</div>
 
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>Object</code></span>
-
-
-        </li>
-    </ul>
-
-
+    
+</div>
 
 
 
 </div>
+        
+    
 
-            
     
 
     
@@ -402,7 +358,7 @@
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 16 2018 10:27:58 GMT+0100 (CET) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 16 2018 10:33:07 GMT+0100 (CET) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
