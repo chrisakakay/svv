@@ -36,4 +36,4 @@ validator.all([
 });
 ```
 
-[API DOCS v0.2.2](https://chrisakakay.github.io/svv/svv/0.2.2)
+[API DOCS v0.2.3](https://chrisakakay.github.io/svv/svv/0.2.3)

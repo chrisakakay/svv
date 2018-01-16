@@ -76,9 +76,8 @@ describe('Simple Value Validator', () => {
     it('requiredIf', () => {
       expect(new Validator.Item('a', '').requiredIf(false).minLength(5).valid).toBe(true);
       expect(new Validator.Item('a', '').requiredIf(true).minLength(5).valid).toBe(false);
+      expect(new Validator.Item('a', 'aaa').requiredIf(true).minLength(5).valid).toBe(false);
       expect(new Validator.Item('a', 'aaaaa').requiredIf(true).minLength(5).valid).toBe(true);
     });
-
-
   });
 })

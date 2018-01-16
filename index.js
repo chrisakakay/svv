@@ -32,7 +32,7 @@ var Item = function () {
     key: 'requiredIf',
     value: function requiredIf(condition) {
       if (condition) {
-        this.required();
+        return this.required();
       }
 
       this.shouldBeValidated = false;

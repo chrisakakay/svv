@@ -49,7 +49,7 @@ class Item {
    */
   requiredIf(condition) {
     if (condition) {
-      this.required();
+      return this.required();
     }
 
     this.shouldBeValidated = false;
