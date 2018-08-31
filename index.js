@@ -21,7 +21,7 @@ var Item = function () {
     value: function required() {
       this.shouldBeValidated = true;
 
-      if (!(this.value && this.value !== null && this.value !== '')) {
+      if (this.value === undefined || this.value === null || this.value === '') {
         this.errors.push('The ' + this.name + ' field is required');
         this.valid = false;
       }

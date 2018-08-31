@@ -24,6 +24,7 @@ describe('Simple Value Validator', () => {
       expect(new Validator.Item('', null).required().valid).toBe(false);
       expect(new Validator.Item('', '').required().valid).toBe(false);
       expect(new Validator.Item('', 'a').required().valid).toBe(true);
+      expect(new Validator.Item('', 0).required().valid).toBe(true);
     });
 
     it('requiredIf', () => {
@@ -31,11 +32,13 @@ describe('Simple Value Validator', () => {
       expect(new Validator.Item('', null).requiredIf(true).valid).toBe(false);
       expect(new Validator.Item('', '').requiredIf(true).valid).toBe(false);
       expect(new Validator.Item('', 'a').requiredIf(true).valid).toBe(true);
+      expect(new Validator.Item('', 0).requiredIf(true).valid).toBe(true);
 
       expect(new Validator.Item('', undefined).requiredIf(false).valid).toBe(true);
       expect(new Validator.Item('', null).requiredIf(false).valid).toBe(true);
       expect(new Validator.Item('', '').requiredIf(false).valid).toBe(true);
       expect(new Validator.Item('', 'a').requiredIf(false).valid).toBe(true);
+      expect(new Validator.Item('', 0).requiredIf(false).valid).toBe(true);
     });
 
     it('comeAfter', () => {
